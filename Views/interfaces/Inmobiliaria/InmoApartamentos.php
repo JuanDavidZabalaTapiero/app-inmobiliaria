@@ -23,10 +23,10 @@ $objInmueblesController = new InmueblesController();
     <main class="dashboard">
         <header>
             <h2>Administrar Inmuebles</h2>
-            <a href="InmoDashboard.html" class="back"></a>
+            <a href="InmoDashboard.php" class="back"></a>
             <a href="../../../Controllers/cerrarSesion.php" class="close"></a>
         </header>
-        <a href="InmoAdd.html" class="btn-home adicionar">+ Adicionar</a>
+        <a href="InmoAdd.php" class="btn-home adicionar">+ Adicionar</a>
         <table>
             <?php
             $objInmueblesController->showAdministrarInmuebles();
