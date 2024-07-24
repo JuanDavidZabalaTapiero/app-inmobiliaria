@@ -1,3 +1,15 @@
+<?php
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $form = $_POST["form"];
+
+    if ($form == "registrarInmueble") {
+        echo 'a';
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,10 +28,11 @@
             <a href="InmoApartamentos.php" class="back"></a>
             <a href="../../../Controllers/cerrarSesion.php" class="close"></a>
         </header>
-        <form>
-            <input type="file" class="upload" aria-describedby="Foto Inmueble">
+        <form action="" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="form" value="registrarInmueble">
+            <input type="file" class="upload" aria-describedby="Foto Inmueble" name="foto_inm" required>
             <div class="select">
-                <select>
+                <select name="tipo_inm" required>
                     <option value="">Seleccione Tipo de Inmueble...</option>
                     <option value="Apartamento">Apartamento</option>
                     <option value="Aparta Estudio">Aparta Estudio</option>
@@ -27,16 +40,16 @@
                 </select>
             </div>
             <div class="select">
-                <select>
+                <select name="categoria_inm" required>
                     <option value="">Seleccione Categoría...</option>
                     <option value="Arriendo">Arriendo</option>
                     <option value="Venta">Venta</option>
                 </select>
             </div>
-            <input type="number" placeholder="Precio...">
-            <input type="number" placeholder="Tamaño...">
-            <input type="text" placeholder="Ciudad...">
-            <input type="text" placeholder="Localidad/Barrio...">
+            <input type="number" placeholder="Precio..." name="precio_inm" required>
+            <input type="number" placeholder="Tamaño..." name="tamaño_inm" required>
+            <input type="text" placeholder="Ciudad..." name="ciudad_inm" required>
+            <input type="text" placeholder="Localidad/Barrio..." name="barrio_inm" required>
 
             <button class="btn-home">Guardar</button>
         </form>
