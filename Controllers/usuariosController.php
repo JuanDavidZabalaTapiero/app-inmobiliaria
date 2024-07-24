@@ -58,7 +58,7 @@ class UsuariosController
                 case 'Usuario':
                     ?>
                     <script>
-                        location.href = "../../Views/interfaces/Usuario/UserDashboard.html";
+                        location.href = "../../Views/interfaces/Usuario/UserDashboard.php";
                     </script>
                     <?php
 
