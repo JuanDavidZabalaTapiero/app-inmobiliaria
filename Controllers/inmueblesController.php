@@ -47,7 +47,7 @@ class InmueblesController
                     </div>
                     <div class="controls">
 
-                        <a href="InmoEdit.html" class="edit"></a>
+                        <a href="InmoEdit.php?id_inm=<?php echo $fInm["id"] ?>" class="edit"></a>
                         <a href="InmoApartamentos.php?id_inm=<?php echo $fInm["id"] ?>" class="delete"></a>
                     </div>
                 </td>
@@ -72,7 +72,7 @@ class InmueblesController
                         </div>
                         <div class="controls">
 
-                            <a href="InmoEdit.html" class="edit"></a>
+                            <a href="InmoEdit.php?id_inm=<?php echo $fInm["id"] ?>" class="edit"></a>
                             <a href="InmoApartamentos.php?id_inm=<?php echo $fInm["id"] ?>" class="delete"></a>
                         </div>
                     </td>
@@ -125,7 +125,56 @@ class InmueblesController
         }
     }
 
+    public function showFormInmoEdit($id_inm)
+    {
+        // CONSULTO EL INMUEBLE SELECCIONADO
+        $fInm = $this->objConsultasInmuebles->selectAllInmuebleId($id_inm);
+
+        ?>
+        <form action="" method="post">
+            <input type="hidden" name="form" value="edit_inm">
+            <div class="select">
+                <select name="tipo_inm">
+                    <option value="<?php echo $fInm["tipo"] ?>"><?php echo $fInm["tipo"] ?></option>
+                    <option value="Apartamento">Apartamento</option>
+                    <option value="Aparta Estudio">Aparta Estudio</option>
+                    <option value="Casa">Casa</option>
+                </select>
+            </div>
+
+            <div class="select">
+                <select name="categoria_inm">
+                    <option value="<?php echo $fInm["categoria"] ?>"><?php echo $fInm["categoria"] ?></option>
+                    <option value="Arriendo">Arriendo</option>
+                    <option value="Venta">Venta</option>
+                </select>
+            </div>
+
+            <input type="number" placeholder="Precio..." value="<?php echo $fInm["precio"] ?>" name="precio_inm">
+
+            <input type="number" placeholder="Tamaño..." value="<?php echo $fInm["tamaño"] ?>" name="size_inm">
+
+            <input type="text" placeholder="Ciudad..." value="<?php echo $fInm["ciudad"] ?>" name="ciudad_inm">
+
+            <input type="text" placeholder="Localidad/Barrio..." value="<?php echo $fInm["barrio"] ?>" name="barrio_inm">
+
+            <button class="btn-home" type="submit">Modificar</button>
+        </form>
+        <?php
+    }
+
     // UPDATE
+    public function updateInmueble($id_inm, $tipo, $categoria, $precio, $size, $ciudad, $barrio)
+    {
+        $this->objConsultasInmuebles->updateAllInmueble($id_inm, $tipo, $categoria, $precio, $size, $ciudad, $barrio);
+
+        ?>
+        <script>
+            alert("Inmueble editado");
+            location.href = "InmoApartamentos.php";
+        </script>
+        <?php
+    }
 
     // DELETE
     public function deleteInm($id_inm)

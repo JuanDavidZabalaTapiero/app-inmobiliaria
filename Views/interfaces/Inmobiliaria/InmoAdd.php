@@ -1,5 +1,8 @@
 <?php
 
+// PARA RESTRINGIR EL ACCESO
+require_once (__DIR__ . '/../../../Controllers/seguridadAcceso.php');
+
 require_once (__DIR__ . '/../../../Controllers/inmueblesController.php');
 $objInmueblesController = new InmueblesController();
 
