@@ -6,6 +6,10 @@ require_once (__DIR__ . '/../../../Controllers/seguridadAcceso.php');
 require_once (__DIR__ . '/../../../Controllers/inmueblesController.php');
 $objInmueblesController = new InmueblesController();
 
+if (isset($_GET["id_inm"])) {
+    $objInmueblesController->deleteInm($_GET["id_inm"]);
+}
+
 ?>
 
 <!DOCTYPE html>

@@ -58,4 +58,14 @@ class ConsultasInmuebles
     // UPDATE
 
     // DELETE
+    public function deleteInmueble($id_inm)
+    {
+        $deleteInmueble = "DELETE FROM inmuebles WHERE id = :id";
+
+        $bindValues = [
+            ':id' => $id_inm
+        ];
+
+        $this->objPrepararConsulta->prepararConsulta($deleteInmueble, $bindValues);
+    }
 }

@@ -11,6 +11,20 @@ class InmueblesController
         $this->objConsultasInmuebles = new ConsultasInmuebles();
     }
 
+    // CREATE
+    public function insertInmueble($tipo_inm, $categoria_inm, $precio_inm, $tamaño_inm, $ciudad_inm, $barrio_inm, $foto_inm)
+    {
+        $this->objConsultasInmuebles->insertAllInmuebles($tipo_inm, $categoria_inm, $precio_inm, $tamaño_inm, $ciudad_inm, $barrio_inm, $foto_inm);
+
+        ?>
+        <script>
+            alert("Registro del inmueble exitoso!");
+            location.href = "InmoApartamentos.php";
+        </script>
+        <?php
+    }
+
+    // READ
     public function showAdministrarInmuebles()
     {
         $arraySelectAllInmuebles = $this->objConsultasInmuebles->selectAllInmuebles();
@@ -34,7 +48,7 @@ class InmueblesController
                     <div class="controls">
 
                         <a href="InmoEdit.html" class="edit"></a>
-                        <a href="#" class="delete"></a>
+                        <a href="InmoApartamentos.php?id_inm=<?php echo $fInm["id"] ?>" class="delete"></a>
                     </div>
                 </td>
             </tr>
@@ -59,7 +73,7 @@ class InmueblesController
                         <div class="controls">
 
                             <a href="InmoEdit.html" class="edit"></a>
-                            <a href="#" class="delete"></a>
+                            <a href="InmoApartamentos.php?id_inm=<?php echo $fInm["id"] ?>" class="delete"></a>
                         </div>
                     </td>
                 </tr>
@@ -111,13 +125,18 @@ class InmueblesController
         }
     }
 
-    public function insertInmueble($tipo_inm, $categoria_inm, $precio_inm, $tamaño_inm, $ciudad_inm, $barrio_inm, $foto_inm)
-    {
-        $this->objConsultasInmuebles->insertAllInmuebles($tipo_inm, $categoria_inm, $precio_inm, $tamaño_inm, $ciudad_inm, $barrio_inm, $foto_inm);
+    // UPDATE
 
+    // DELETE
+    public function deleteInm($id_inm)
+    {
+        // ELIMINO EL INMUEBLE
+        $this->objConsultasInmuebles->deleteInmueble($id_inm);
+
+        // REDIRECCIONO
         ?>
         <script>
-            alert("Registro del inmueble exitoso!");
+            alert("Se eliminó el inmueble");
             location.href = "InmoApartamentos.php";
         </script>
         <?php
