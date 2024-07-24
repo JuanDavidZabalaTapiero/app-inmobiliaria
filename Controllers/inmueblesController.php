@@ -24,7 +24,7 @@ class InmueblesController
             <tr>
                 <td>
                     <figure class="photo">
-                        <img src="../../imgs/inmueble-1.png" alt="">
+                        <img src="../../../Uploads/inmuebles/<?php echo $fInm["foto"] ?>" alt="">
                     </figure>
                     <div class="info">
                         <h3><?php echo $fInm["tipo"] ?></h3>
@@ -49,7 +49,7 @@ class InmueblesController
                 <tr>
                     <td>
                         <figure class="photo">
-                            <img src="../../imgs/<?php echo $fInm["foto"] ?>" alt="">
+                            <img src="../../../Uploads/inmuebles/<?php echo $fInm["foto"] ?>" alt="">
                         </figure>
                         <div class="info">
                             <h3><?php echo $fInm["tipo"] ?></h3>
@@ -79,7 +79,7 @@ class InmueblesController
 
             ?>
             <div class="card-inmueble">
-                <img src="../../imgs/<?php echo $fInm["foto"] ?>" alt="">
+                <img src="../../../Uploads/inmuebles/<?php echo $fInm["foto"] ?>" alt="">
                 <div class="info-card">
                     <h4>Valor de Arriendo:</h4>
                     <h2>$<?php echo number_format($fInm["precio"], 0, ',', '.') ?></h2>
@@ -97,7 +97,7 @@ class InmueblesController
             foreach ($fInmuebles as $fInm) {
                 ?>
                 <div class="card-inmueble">
-                    <img src="../../imgs/<?php echo $fInm["foto"] ?>" alt="">
+                    <img src="../../../Uploads/inmuebles/<?php echo $fInm["foto"] ?>" alt="">
                     <div class="info-card">
                         <h4>Valor de Arriendo:</h4>
                         <h2>$<?php echo number_format($fInm["precio"], 0, ',', '.') ?></h2>
@@ -116,10 +116,10 @@ class InmueblesController
         $this->objConsultasInmuebles->insertAllInmuebles($tipo_inm, $categoria_inm, $precio_inm, $tamaño_inm, $ciudad_inm, $barrio_inm, $foto_inm);
 
         ?>
-        <!-- <script>
-            alert("Registro del inmueble exitosa!");
+        <script>
+            alert("Registro del inmueble exitoso!");
             location.href = "InmoApartamentos.php";
-        </script> -->
+        </script>
         <?php
     }
 }

@@ -14,14 +14,13 @@ class ConsultasInmuebles
     // CREATE
     public function insertAllInmuebles($tipo, $categoria, $precio, $tamaño, $ciudad, $barrio, $foto)
     {
-        $insertAllInmuebles = "INSERT INTO inmuebles(tipo, categoria, precio, tamaño, ciudad, barrio, foto) 
-        VALUES (:tipo, :categoria, :precio, :tamaño, :ciudad, :barrio, :foto)";
+        $insertAllInmuebles = "INSERT INTO inmuebles(id, tipo, categoria, precio, tamaño, ciudad, barrio, foto) VALUES ('', :tipo, :categoria, :precio, :size, :ciudad, :barrio, :foto)";
 
         $bindValues = [
             ':tipo' => $tipo,
             ':categoria' => $categoria,
             ':precio' => $precio,
-            ':tamaño' => $tamaño,
+            ':size' => $tamaño,
             ':ciudad' => $ciudad,
             ':barrio' => $barrio,
             ':foto' => $foto
