@@ -12,6 +12,24 @@ class ConsultasInmuebles
     }
 
     // CREATE
+    public function insertAllInmuebles($tipo, $categoria, $precio, $tamaño, $ciudad, $barrio, $foto)
+    {
+        $insertAllInmuebles = "INSERT INTO inmuebles(tipo, categoria, precio, tamaño, ciudad, barrio, foto) 
+        VALUES (:tipo, :categoria, :precio, :tamaño, :ciudad, :barrio, :foto)";
+
+        $bindValues = [
+            ':tipo' => $tipo,
+            ':categoria' => $categoria,
+            ':precio' => $precio,
+            ':tamaño' => $tamaño,
+            ':ciudad' => $ciudad,
+            ':barrio' => $barrio,
+            ':foto' => $foto
+        ];
+
+        // EJECUTO LA CONSULTA
+        $this->objPrepararConsulta->prepararConsulta($insertAllInmuebles, $bindValues);
+    }
 
     // READ
     public function selectAllInmuebles()

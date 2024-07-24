@@ -110,4 +110,16 @@ class InmueblesController
             }
         }
     }
+
+    public function insertInmueble($tipo_inm, $categoria_inm, $precio_inm, $tamaño_inm, $ciudad_inm, $barrio_inm, $foto_inm)
+    {
+        $this->objConsultasInmuebles->insertAllInmuebles($tipo_inm, $categoria_inm, $precio_inm, $tamaño_inm, $ciudad_inm, $barrio_inm, $foto_inm);
+
+        ?>
+        <!-- <script>
+            alert("Registro del inmueble exitosa!");
+            location.href = "InmoApartamentos.php";
+        </script> -->
+        <?php
+    }
 }

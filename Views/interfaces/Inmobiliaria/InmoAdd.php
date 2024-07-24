@@ -1,10 +1,36 @@
 <?php
 
+require_once (__DIR__ . '/../../../Controllers/inmueblesController.php');
+$objInmueblesController = new InmueblesController();
+
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $form = $_POST["form"];
 
     if ($form == "registrarInmueble") {
-        echo 'a';
+        
+        $tipo_inm = $_POST["tipo_inm"];
+        $categoria_inm = $_POST["categoria_inm"];
+        $precio_inm = $_POST["precio_inm"];
+        $tamaño_inm = $_POST["tamaño_inm"];
+        $ciudad_inm = $_POST["ciudad_inm"];
+        $barrio_inm = $_POST["barrio_inm"];
+
+        // PRIMERO SUBO LA IMG A LA CARPETA UPLOADS
+        $uploadDir = '../../../Uploads/inmuebles/';
+
+        // Nombre del archivo subido
+        $foto_inm = basename($_FILES['foto_inm']['name']);
+
+        // Ruta completa del archivo subido
+        $uploadFile = $uploadDir . $foto_inm;
+
+        // Mover el archivo subido a la carpeta de destino
+        if (move_uploaded_file($_FILES['foto_inm']['tmp_name'], $uploadFile)) {
+            
+            $objInmueblesController->insertInmueble($tipo_inm, $categoria_inm, $precio_inm, $tamaño_inm, $ciudad_inm, $barrio_inm, $foto_inm);
+        } else {
+            echo "Hubo un error al subir el archivo.\n";
+        }
     }
 }
 
@@ -30,7 +56,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         </header>
         <form action="" method="post" enctype="multipart/form-data">
             <input type="hidden" name="form" value="registrarInmueble">
-            <input type="file" class="upload" aria-describedby="Foto Inmueble" name="foto_inm" required>
+
+            <input type="file" class="upload" aria-describedby="Foto Inmueble" name="foto_inm" accept=".jpg, .jpeg, .png, .gif, .bmp, .webp" required>
+
             <div class="select">
                 <select name="tipo_inm" required>
                     <option value="">Seleccione Tipo de Inmueble...</option>
@@ -39,6 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     <option value="Casa">Casa</option>
                 </select>
             </div>
+
             <div class="select">
                 <select name="categoria_inm" required>
                     <option value="">Seleccione Categoría...</option>
@@ -46,12 +75,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     <option value="Venta">Venta</option>
                 </select>
             </div>
+
             <input type="number" placeholder="Precio..." name="precio_inm" required>
+
             <input type="number" placeholder="Tamaño..." name="tamaño_inm" required>
+
             <input type="text" placeholder="Ciudad..." name="ciudad_inm" required>
+
             <input type="text" placeholder="Localidad/Barrio..." name="barrio_inm" required>
 
-            <button class="btn-home">Guardar</button>
+            <button class="btn-home" type="submit">Guardar</button>
         </form>
     </main>
 </body>
