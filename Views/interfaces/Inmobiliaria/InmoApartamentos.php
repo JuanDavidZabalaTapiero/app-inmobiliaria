@@ -1,5 +1,8 @@
 <?php
 
+// PARA RESTRINGIR EL ACCESO
+require_once (__DIR__ . '/../../../Controllers/seguridadAcceso.php');
+
 require_once (__DIR__ . '/../../../Controllers/inmueblesController.php');
 $objInmueblesController = new InmueblesController();
 
@@ -21,7 +24,7 @@ $objInmueblesController = new InmueblesController();
         <header>
             <h2>Administrar Inmuebles</h2>
             <a href="InmoDashboard.html" class="back"></a>
-            <a href="index.html" class="close"></a>
+            <a href="../../../Controllers/cerrarSesion.php" class="close"></a>
         </header>
         <a href="InmoAdd.html" class="btn-home adicionar">+ Adicionar</a>
         <table>

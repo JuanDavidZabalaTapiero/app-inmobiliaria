@@ -1,5 +1,7 @@
 <?php
 
+require_once (__DIR__ . '/../Models/consultasInmuebles.php');
+
 class InmueblesController
 {
     public $objConsultasInmuebles;
@@ -13,24 +15,56 @@ class InmueblesController
     {
         $arraySelectAllInmuebles = $this->objConsultasInmuebles->selectAllInmuebles();
 
-        ?>
-        <tr>
-            <td>
-                <figure class="photo">
-                    <img src="../../imgs/inmueble-1.png" alt="">
-                </figure>
-                <div class="info">
-                    <h3>Apartamento</h3>
-                    <h4>$2.400.000</h4>
-                    <p>Bogotá/Engativa</p>
-                </div>
-                <div class="controls">
+        $filas = $arraySelectAllInmuebles['filas'];
 
-                    <a href="InmoEdit.html" class="edit"></a>
-                    <a href="#" class="delete"></a>
-                </div>
-            </td>
-        </tr>
-        <?php
+        if ($filas == 1) {
+            $fInm = $arraySelectAllInmuebles['resultado'];
+
+            ?>
+            <tr>
+                <td>
+                    <figure class="photo">
+                        <img src="../../imgs/inmueble-1.png" alt="">
+                    </figure>
+                    <div class="info">
+                        <h3><?php echo $fInm["tipo"] ?></h3>
+                        <h4>$<?php echo $fInm["precio"] ?></h4>
+                        <p><?php echo $fInm["ciudad"] ?>/<?php echo $fInm["barrio"] ?></p>
+                    </div>
+                    <div class="controls">
+
+                        <a href="InmoEdit.html" class="edit"></a>
+                        <a href="#" class="delete"></a>
+                    </div>
+                </td>
+            </tr>
+            <?php
+        }
+
+        if ($filas == 2) {
+            $fInmuebles = $arraySelectAllInmuebles['resultados'];
+
+            foreach ($fInmuebles as $fInm) {
+                ?>
+                <tr>
+                    <td>
+                        <figure class="photo">
+                            <img src="../../imgs/<?php echo $fInm["foto"] ?>" alt="">
+                        </figure>
+                        <div class="info">
+                            <h3><?php echo $fInm["tipo"] ?></h3>
+                            <h4>$<?php echo number_format($fInm["precio"], 0, ',', '.') ?></h4>
+                            <p><?php echo $fInm["ciudad"] ?>/<?php echo $fInm["barrio"] ?></p>
+                        </div>
+                        <div class="controls">
+
+                            <a href="InmoEdit.html" class="edit"></a>
+                            <a href="#" class="delete"></a>
+                        </div>
+                    </td>
+                </tr>
+                <?php
+            }
+        }
     }
 }

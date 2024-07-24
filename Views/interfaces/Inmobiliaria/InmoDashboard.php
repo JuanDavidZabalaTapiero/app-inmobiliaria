@@ -1,3 +1,10 @@
+<?php
+
+// PARA RESTRINGIR EL ACCESO
+require_once (__DIR__ . '/../../../Controllers/seguridadAcceso.php');
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

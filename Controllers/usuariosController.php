@@ -52,7 +52,7 @@ class UsuariosController
 
             session_start();
 
-            $_SESSION["id_user"] = $fUser["id"];
+            $_SESSION["aut"] = "Si";
 
             switch ($rol) {
                 case 'Usuario':
@@ -67,7 +67,7 @@ class UsuariosController
                 case 'Inmobiliaria':
                     ?>
                     <script>
-                        location.href = "../../Views/interfaces/Inmobiliaria/InmoDashboard.html";
+                        location.href = "../../Views/interfaces/Inmobiliaria/InmoDashboard.php";
                     </script>
                     <?php
 
@@ -81,6 +81,5 @@ class UsuariosController
             </script>
             <?php
         }
-
     }
 }
