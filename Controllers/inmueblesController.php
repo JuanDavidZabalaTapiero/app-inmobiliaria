@@ -99,7 +99,7 @@ class InmueblesController
                     <h2>$<?php echo number_format($fInm["precio"], 0, ',', '.') ?></h2>
                     <p><?php echo $fInm["tipo"] ?> - <?php echo $fInm["tamaño"] ?>m2</p>
                     <p class="direccion"><?php echo $fInm["ciudad"] ?>/<?php echo $fInm["barrio"] ?></p>
-                    <a href="UserShowInmueble.html">Ver Más</a>
+                    <a href="UserShowInmueble.php?id_inm=<?php echo $fInm["id"] ?>">Ver Más</a>
                 </div>
             </div>
             <?php
@@ -117,7 +117,7 @@ class InmueblesController
                         <h2>$<?php echo number_format($fInm["precio"], 0, ',', '.') ?></h2>
                         <p><?php echo $fInm["tipo"] ?> - <?php echo $fInm["tamaño"] ?>m2</p>
                         <p class="direccion"><?php echo $fInm["ciudad"] ?>/<?php echo $fInm["barrio"] ?></p>
-                        <a href="UserShowInmueble.html">Ver Más</a>
+                        <a href="UserShowInmueble.php?id_inm=<?php echo $fInm["id"] ?>">Ver Más</a>
                     </div>
                 </div>
                 <?php
@@ -160,6 +160,39 @@ class InmueblesController
 
             <button class="btn-home" type="submit">Modificar</button>
         </form>
+        <?php
+    }
+
+    public function UserShowInmueble($id_inm)
+    {
+        $fInm = $this->objConsultasInmuebles->selectAllInmuebleId($id_inm);
+
+        ?>
+        <figure class="photo-preview">
+            <img src="../../../Uploads/inmuebles/<?php echo $fInm["foto"] ?>" alt="">
+        </figure>
+        <div class="cont-details">
+            <div>
+                <article class="info-name">
+                    <p><?php echo $fInm["tipo"] ?></p>
+                </article>
+                <article class="info-category">
+                    <p><?php echo $fInm["categoria"] ?></p>
+                </article>
+                <article class="info-precio">
+                    <p>$<?php echo number_format($fInm["precio"], 0, ',', '.') ?></p>
+                </article>
+                <article class="info-direccion">
+                    <p><?php echo $fInm["barrio"] ?>/<?php echo $fInm["ciudad"] ?></p>
+                </article>
+                <article class="info-tamano">
+                    <p><?php echo $fInm["tamaño"] ?>M2</p>
+                </article>
+
+                <a href="UserShowInmueble.php?cita=<?php echo $fInm["id"] ?>" class="btn-home">Solictar cita</a>
+
+            </div>
+        </div>
         <?php
     }
 

@@ -12,6 +12,17 @@ class SolicitudesController
     }
 
     // CREATE
+    public function insertSolicitud($id_inm, $id_user, $fecha)
+    {
+        $this->objConsultasSolicitudes->insertAllSolicitudes($id_inm, $id_user, $fecha);
+
+        ?>
+        <script>
+            alert("Solicitud registrada");
+            location.href = "UserDashboard.php";
+        </script>
+        <?php
+    }
 
     // READ
     public function showInmoSolicitudes()

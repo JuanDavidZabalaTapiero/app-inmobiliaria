@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-07-2024 a las 02:59:44
+-- Tiempo de generación: 25-07-2024 a las 03:58:37
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -48,7 +48,7 @@ INSERT INTO `inmuebles` (`id`, `tipo`, `categoria`, `precio`, `tamaño`, `ciudad
 (3, 'Apartamento', 'Arriendo', 3200000, 70, 'Medellín', 'Laureles', 'inmueble-3.png'),
 (4, 'Apartamento', 'Venta', 2350000, 80, 'Bogotá', 'Engativa', 'inmueble-4.png'),
 (5, 'Casa', 'Arriendo', 3500000, 120, 'Bogotá', 'Usme', 'inmueble-5.png'),
-(6, 'Casa', 'Arriendo', 110005, 47, 'Cali S', 'Belén S', 'inmueble-6.png');
+(6, 'Casa', 'Arriendo', 110005, 47, 'Cali', 'Belén', 'inmueble-6.png');
 
 -- --------------------------------------------------------
 
@@ -92,8 +92,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombres`, `apellidos`, `telefono`, `correo`, `clave`, `rol`) VALUES
-(123, 'Juan', 'Zabala', 1, 'a@a', '202cb962ac59075b964b07152d234b70', 'Usuario'),
-(321, 'Pedro', 'Pascal', 1, 'i@i', '202cb962ac59075b964b07152d234b70', 'Inmobiliaria'),
+(123, 'Juan', 'Zabala', 317, 'a@a', '202cb962ac59075b964b07152d234b70', 'Usuario'),
+(321, 'Pedro', 'Pascal', 320, 'i@i', '202cb962ac59075b964b07152d234b70', 'Inmobiliaria'),
 (1234, 'Karen', 'Daniela', 310, 'k@k', '950a4152c2b4aa3ad78bdd6b366cc179', 'Usuario');
 
 --
@@ -134,7 +134,7 @@ ALTER TABLE `inmuebles`
 -- AUTO_INCREMENT de la tabla `solicitudes`
 --
 ALTER TABLE `solicitudes`
-  MODIFY `id_sol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_sol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`

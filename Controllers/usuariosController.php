@@ -54,6 +54,8 @@ class UsuariosController
 
             $_SESSION["aut"] = "Si";
 
+            $_SESSION["id_user"] = $fUser["id"];
+
             switch ($rol) {
                 case 'Usuario':
                     ?>

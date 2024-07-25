@@ -12,6 +12,18 @@ class ConsultasSolicitudes
     }
 
     // CREATE
+    public function insertAllSolicitudes($id_inm, $id_user, $fecha)
+    {
+        $insertAllSolicitudes = "INSERT INTO solicitudes(id_inm, id_user, fecha) VALUES (:id_inm, :id_user, :fecha)";
+
+        $bindValues = [
+            ':id_inm' => $id_inm,
+            ':id_user' => $id_user,
+            ':fecha' => $fecha
+        ];
+
+        $this->objPrepararConsulta->prepararConsulta($insertAllSolicitudes, $bindValues);
+    }
 
     // READ
     public function selectAllSolicitudes()
