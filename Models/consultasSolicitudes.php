@@ -40,6 +40,23 @@ class ConsultasSolicitudes
         }
     }
 
+    public function selectAllSolicitud($id_sol)
+    {
+        $selectAllSolicitud = "SELECT * 
+        FROM solicitudes s
+        INNER JOIN inmuebles i ON s.id_inm = i.id
+        INNER JOIN usuarios u ON s.id_user = u.id
+        WHERE id_sol = :id_sol";
+
+        $bindValues = [
+            ':id_sol' => $id_sol
+        ];
+
+        $result = $this->objPrepararConsulta->prepararConsulta($selectAllSolicitud, $bindValues);
+
+        return $result->fetch();
+    }
+
     // UPDATE
 
     // DELETE

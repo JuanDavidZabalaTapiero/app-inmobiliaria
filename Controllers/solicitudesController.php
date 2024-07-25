@@ -69,37 +69,40 @@ class SolicitudesController
 
     public function showInmoShowSolicitud($id_soli)
     {
+        // CONSULTO LA SOLICITUD
+        $fSoli = $this->objConsultasSolicitudes->selectAllSolicitud($id_soli);
+
         ?>
         <figure class="photo-preview">
-            <img src="../imgs/inmueble-1.png" alt="">
+            <img src="../../../Uploads/inmuebles/<?php echo $fSoli["foto"] ?>" alt="">
         </figure>
         <div class="cont-details">
             <div>
                 <article class="info-name">
-                    <p>Apartamento</p>
+                    <p><?php echo $fSoli["tipo"] ?></p>
                 </article>
                 <article class="info-category">
-                    <p>Arriendo</p>
+                    <p><?php echo $fSoli["categoria"] ?></p>
                 </article>
                 <article class="info-precio">
-                    <p>$2.400.000</p>
+                    <p><?php echo number_format($fSoli["precio"], 0, ',', '.') ?></p>
                 </article>
                 <article class="info-direccion">
-                    <p>Engativa/Bogotá</p>
+                    <p><?php echo $fSoli["barrio"] ?>/<?php echo $fSoli["ciudad"] ?></p>
                 </article>
                 <hr>
                 <br>
                 <article class="info-fecha">
-                    <p>2023-05-05</p>
+                    <p><?php echo $fSoli["fecha"] ?></p>
                 </article>
                 <article class="info-usuario">
-                    <p>Nombre Usuario</p>
+                    <p><?php echo $fSoli["nombres"] . ' ' . $fSoli["apellidos"] ?></p>
                 </article>
                 <article class="info-telefono">
-                    <p>3212344455</p>
+                    <p><?php echo $fSoli["telefono"] ?></p>
                 </article>
                 <article class="info-correo">
-                    <p>user@gmail.com</p>
+                    <p><?php echo $fSoli["correo"] ?></p>
                 </article>
             </div>
         </div>
