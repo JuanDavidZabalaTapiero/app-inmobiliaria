@@ -48,33 +48,47 @@ class UsuariosController
 
         // VERIFICO QUE EL EMAIL SEA VALIDO
         if ($fUser["correo"] == $email) {
-            $rol = $fUser["rol"];
 
-            session_start();
+            // CLAVE HASHEADA
+            $claveHash = md5($clave);
 
-            $_SESSION["aut"] = "Si";
+            if ($fUser["clave"] == $claveHash) {
+                $rol = $fUser["rol"];
 
-            $_SESSION["id_user"] = $fUser["id"];
+                session_start();
 
-            switch ($rol) {
-                case 'Usuario':
-                    ?>
-                    <script>
-                        location.href = "../../Views/interfaces/Usuario/UserDashboard.php";
-                    </script>
-                    <?php
+                $_SESSION["aut"] = "Si";
 
-                    break;
+                $_SESSION["id_user"] = $fUser["id"];
 
-                case 'Inmobiliaria':
-                    ?>
-                    <script>
-                        location.href = "../../Views/interfaces/Inmobiliaria/InmoDashboard.php";
-                    </script>
-                    <?php
+                switch ($rol) {
+                    case 'Usuario':
+                        ?>
+                        <script>
+                            location.href = "../../Views/interfaces/Usuario/UserDashboard.php";
+                        </script>
+                        <?php
 
-                    break;
+                        break;
+
+                    case 'Inmobiliaria':
+                        ?>
+                        <script>
+                            location.href = "../../Views/interfaces/Inmobiliaria/InmoDashboard.php";
+                        </script>
+                        <?php
+
+                        break;
+                }
+            } else {
+                ?>
+                <script>
+                    alert("Contraseña incorrecta");
+                    location.href = "../../Views/interfaces/login.php";
+                </script>
+                <?php
             }
+
         } else {
             ?>
             <script>
