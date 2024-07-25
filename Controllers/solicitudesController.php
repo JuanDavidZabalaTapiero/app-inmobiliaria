@@ -11,6 +11,9 @@ class SolicitudesController
         $this->objConsultasSolicitudes = new ConsultasSolicitudes();
     }
 
+    // CREATE
+
+    // READ
     public function showInmoSolicitudes()
     {
         $arraySelectAllSolicitudes = $this->objConsultasSolicitudes->selectAllSolicitudes();
@@ -32,7 +35,7 @@ class SolicitudesController
                         <p><?php echo $fSoli["nombres"] . ' ' . $fSoli["apellidos"] ?></p>
                     </div>
                     <div class="controls">
-                        <a href="InmoShowSolicitud.html" class="show"></a>
+                        <a href="InmoShowSolicitud.php?id_soli=<?php echo $fSoli["id_sol"] ?>" class="show"></a>
                     </div>
                 </td>
             </tr>
@@ -55,7 +58,7 @@ class SolicitudesController
                             <p><?php echo $fSoli["nombres"] . ' ' . $fSoli["apellidos"] ?></p>
                         </div>
                         <div class="controls">
-                            <a href="InmoShowSolicitud.html" class="show"></a>
+                            <a href="InmoShowSolicitud.php?id_soli=<?php echo $fSoli["id_sol"] ?>" class="show"></a>
                         </div>
                     </td>
                 </tr>
@@ -63,4 +66,47 @@ class SolicitudesController
             }
         }
     }
+
+    public function showInmoShowSolicitud($id_soli)
+    {
+        ?>
+        <figure class="photo-preview">
+            <img src="../imgs/inmueble-1.png" alt="">
+        </figure>
+        <div class="cont-details">
+            <div>
+                <article class="info-name">
+                    <p>Apartamento</p>
+                </article>
+                <article class="info-category">
+                    <p>Arriendo</p>
+                </article>
+                <article class="info-precio">
+                    <p>$2.400.000</p>
+                </article>
+                <article class="info-direccion">
+                    <p>Engativa/Bogotá</p>
+                </article>
+                <hr>
+                <br>
+                <article class="info-fecha">
+                    <p>2023-05-05</p>
+                </article>
+                <article class="info-usuario">
+                    <p>Nombre Usuario</p>
+                </article>
+                <article class="info-telefono">
+                    <p>3212344455</p>
+                </article>
+                <article class="info-correo">
+                    <p>user@gmail.com</p>
+                </article>
+            </div>
+        </div>
+        <?php
+    }
+
+    // UPDATE
+
+    // DELETE
 }

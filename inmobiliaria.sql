@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-07-2024 a las 01:19:11
+-- Tiempo de generación: 25-07-2024 a las 02:59:44
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -48,7 +48,7 @@ INSERT INTO `inmuebles` (`id`, `tipo`, `categoria`, `precio`, `tamaño`, `ciudad
 (3, 'Apartamento', 'Arriendo', 3200000, 70, 'Medellín', 'Laureles', 'inmueble-3.png'),
 (4, 'Apartamento', 'Venta', 2350000, 80, 'Bogotá', 'Engativa', 'inmueble-4.png'),
 (5, 'Casa', 'Arriendo', 3500000, 120, 'Bogotá', 'Usme', 'inmueble-5.png'),
-(6, 'Aparta Estudio', 'Venta', 110000, 40, 'Cali', 'Belén', 'inmueble-6.png');
+(6, 'Casa', 'Arriendo', 110005, 47, 'Cali S', 'Belén S', 'inmueble-6.png');
 
 -- --------------------------------------------------------
 
@@ -62,6 +62,14 @@ CREATE TABLE `solicitudes` (
   `id_user` int(15) DEFAULT NULL,
   `fecha` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `solicitudes`
+--
+
+INSERT INTO `solicitudes` (`id_sol`, `id_inm`, `id_user`, `fecha`) VALUES
+(1, 1, 123, '2024-07-24'),
+(2, 2, 1234, '2024-07-24');
 
 -- --------------------------------------------------------
 
@@ -84,8 +92,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombres`, `apellidos`, `telefono`, `correo`, `clave`, `rol`) VALUES
-(123, 'a', 'b', 1, 'a@a', '202cb962ac59075b964b07152d234b70', 'Usuario'),
-(321, 'inmo', 'a', 1, 'i@i', '202cb962ac59075b964b07152d234b70', 'Inmobiliaria');
+(123, 'Juan', 'Zabala', 1, 'a@a', '202cb962ac59075b964b07152d234b70', 'Usuario'),
+(321, 'Pedro', 'Pascal', 1, 'i@i', '202cb962ac59075b964b07152d234b70', 'Inmobiliaria'),
+(1234, 'Karen', 'Daniela', 310, 'k@k', '950a4152c2b4aa3ad78bdd6b366cc179', 'Usuario');
 
 --
 -- Índices para tablas volcadas
@@ -125,13 +134,13 @@ ALTER TABLE `inmuebles`
 -- AUTO_INCREMENT de la tabla `solicitudes`
 --
 ALTER TABLE `solicitudes`
-  MODIFY `id_sol` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_sol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=322;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1235;
 
 --
 -- Restricciones para tablas volcadas
