@@ -34,8 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <p>Ingresa Tu Email y Contraseña</p>
         <form action="" method="post">
             <input type="hidden" name="form" value="login">
-            <input type="email" placeholder="Correo Electrónico" name="email_user">
-            <input type="password" placeholder="Contraseña" name="clave_user">
+            <input type="email" placeholder="Correo Electrónico" name="email_user" required>
+            <input type="password" placeholder="Contraseña" name="clave_user" required>
             <button>Ingresar</button>
         </form>
     </main>
