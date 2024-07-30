@@ -1,14 +1,20 @@
 <?php
 
-require_once (__DIR__ . '/../Models/consultasInmuebles.php');
+require_once(__DIR__ . '/../Models/consultasInmuebles.php');
+
+require_once(__DIR__ . '/../Models/consultasSolicitudes.php');
 
 class InmueblesController
 {
     public $objConsultasInmuebles;
 
+    public $objConsultasSolicitudes;
+
     public function __construct()
     {
         $this->objConsultasInmuebles = new ConsultasInmuebles();
+
+        $this->objConsultasSolicitudes = new ConsultasSolicitudes();
     }
 
     // CREATE
@@ -16,7 +22,7 @@ class InmueblesController
     {
         $this->objConsultasInmuebles->insertAllInmuebles($tipo_inm, $categoria_inm, $precio_inm, $tamaño_inm, $ciudad_inm, $barrio_inm, $foto_inm);
 
-        ?>
+?>
         <script>
             alert("Registro del inmueble exitoso!");
             location.href = "InmoApartamentos.php";
@@ -34,7 +40,7 @@ class InmueblesController
         if ($filas == 1) {
             $fInm = $arraySelectAllInmuebles['resultado'];
 
-            ?>
+        ?>
             <tr>
                 <td>
                     <figure class="photo">
@@ -59,7 +65,7 @@ class InmueblesController
             $fInmuebles = $arraySelectAllInmuebles['resultados'];
 
             foreach ($fInmuebles as $fInm) {
-                ?>
+            ?>
                 <tr>
                     <td>
                         <figure class="photo">
@@ -77,7 +83,7 @@ class InmueblesController
                         </div>
                     </td>
                 </tr>
-                <?php
+            <?php
             }
         }
     }
@@ -109,7 +115,7 @@ class InmueblesController
             $fInmuebles = $arraySelectAllInmuebles['resultados'];
 
             foreach ($fInmuebles as $fInm) {
-                ?>
+            ?>
                 <div class="card-inmueble">
                     <img src="../../../Uploads/inmuebles/<?php echo $fInm["foto"] ?>" alt="">
                     <div class="info-card">
@@ -120,7 +126,7 @@ class InmueblesController
                         <a href="UserShowInmueble.php?id_inm=<?php echo $fInm["id"] ?>">Ver Más</a>
                     </div>
                 </div>
-                <?php
+        <?php
             }
         }
     }
@@ -160,14 +166,14 @@ class InmueblesController
 
             <button class="btn-home" type="submit">Modificar</button>
         </form>
-        <?php
+    <?php
     }
 
     public function UserShowInmueble($id_inm)
     {
         $fInm = $this->objConsultasInmuebles->selectAllInmuebleId($id_inm);
 
-        ?>
+    ?>
         <figure class="photo-preview">
             <img src="../../../Uploads/inmuebles/<?php echo $fInm["foto"] ?>" alt="">
         </figure>
@@ -193,7 +199,7 @@ class InmueblesController
 
             </div>
         </div>
-        <?php
+    <?php
     }
 
     // UPDATE
@@ -201,7 +207,7 @@ class InmueblesController
     {
         $this->objConsultasInmuebles->updateAllInmueble($id_inm, $tipo, $categoria, $precio, $size, $ciudad, $barrio);
 
-        ?>
+    ?>
         <script>
             alert("Inmueble editado");
             location.href = "InmoApartamentos.php";
@@ -212,15 +218,60 @@ class InmueblesController
     // DELETE
     public function deleteInm($id_inm)
     {
-        // ELIMINO EL INMUEBLE
-        $this->objConsultasInmuebles->deleteInmueble($id_inm);
+        // CONSULTO SI HAY ALGUNA SOLICITUD CON ESE ID DEL INMUEBLE
+        $arraySelectSolicitudesInmueble = $this->objConsultasSolicitudes->selectAllSolicitudesInmueble($id_inm);
 
-        // REDIRECCIONO
+        $filas = $arraySelectSolicitudesInmueble['filas'];
+
+        if ($filas == 0) {
+            // ELIMINO EL INMUEBLE
+            $this->objConsultasInmuebles->deleteInmueble($id_inm);
+
+            // REDIRECCIONO
         ?>
-        <script>
-            alert("Se eliminó el inmueble");
-            location.href = "InmoApartamentos.php";
-        </script>
+            <script>
+                alert("Se eliminó el inmueble");
+                location.href = "InmoApartamentos.php";
+            </script>
         <?php
+        }
+
+        if ($filas == 1) {
+            $fSoli = $arraySelectSolicitudesInmueble['resultado'];
+
+            // ELIMINO LA SOLI
+            $this->objConsultasSolicitudes->deleteSolicitudId($fSoli["id_sol"]);
+
+            // ELIMINO EL INMUEBLE
+            $this->objConsultasInmuebles->deleteInmueble($id_inm);
+
+            // REDIRECCIONO
+        ?>
+            <script>
+                alert("Se eliminó el inmueble");
+                location.href = "InmoApartamentos.php";
+            </script>
+        <?php
+        }
+
+        if ($filas == 2) {
+            $fSolis = $arraySelectSolicitudesInmueble['resultados'];
+
+            foreach ($fSolis as $fSoli) {
+                // ELIMINO LA SOLI
+                $this->objConsultasSolicitudes->deleteSolicitudId($fSoli["id_sol"]);
+            }
+
+            // ELIMINO EL INMUEBLE
+            $this->objConsultasInmuebles->deleteInmueble($id_inm);
+
+            // REDIRECCIONO
+        ?>
+            <script>
+                alert("Se eliminó el inmueble");
+                location.href = "InmoApartamentos.php";
+            </script>
+<?php
+        }
     }
 }

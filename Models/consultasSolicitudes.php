@@ -1,6 +1,6 @@
 <?php
 
-require_once (__DIR__ . '/prepararConsulta.php');
+require_once(__DIR__ . '/prepararConsulta.php');
 
 class ConsultasSolicitudes
 {
@@ -69,7 +69,44 @@ class ConsultasSolicitudes
         return $result->fetch();
     }
 
+    public function selectAllSolicitudesInmueble($id_inm)
+    {
+        $selectAllSolicitudesInmueble = "SELECT * FROM solicitudes WHERE id_inm = :id_inm";
+
+        $bindValues = [
+            ':id_inm' => $id_inm
+        ];
+
+        $resultSelect = $this->objPrepararConsulta->prepararConsulta($selectAllSolicitudesInmueble, $bindValues);
+
+        if ($resultSelect->rowCount() == 0) {
+            return;
+        }
+
+        if ($resultSelect->rowCount() == 1) {
+            return [
+                'resultado' => $resultSelect->fetch(),
+                'filas' => 1
+            ];
+        } else {
+            return [
+                'resultados' => $resultSelect->fetchAll(),
+                'filas' => 2
+            ];
+        }
+    }
+
     // UPDATE
 
     // DELETE
+    public function deleteSolicitudId($id_sol)
+    {
+        $deleteSolicitudId = "DELETE FROM solicitudes WHERE id_sol = :id_sol";
+
+        $bindValues = [
+            'id_sol' => $id_sol
+        ];
+
+        $this->objPrepararConsulta->prepararConsulta($deleteSolicitudId, $bindValues);
+    }
 }
